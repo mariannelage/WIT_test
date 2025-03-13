@@ -9,17 +9,15 @@ export default function Panel({ cityInput }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      // Fetch city data
       const dataCity = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&units=metric&appid=bfe5a149c540c0c24b78852de06e5f62`
       );
       const cityData = await dataCity.json();
       setCity(cityData);
 
-      console.log(cityData);
-
       const lat = cityData.coord.lat;
       const lon = cityData.coord.lon;
+      const currentTemp = cityData.main.temp;
 
       const dataForecast = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=30&units=metric&appid=bfe5a149c540c0c24b78852de06e5f62`
@@ -40,7 +38,6 @@ export default function Panel({ cityInput }) {
     dataDays.forEach((data) => {
       const date = data.dt_txt.split(' ')[0]; 
       const temp = data.main.temp;
-      console.log("date "+date+" temp "+temp)
 
       if (!result[date]) {
         result[date] = { maxTemp: temp, minTemp: temp };
@@ -62,12 +59,12 @@ export default function Panel({ cityInput }) {
 
   return (
     <div className="grid items-center justify-items-center">
-      <div>In {city.name}, it is currently {city.main.temp}ºC</div>
-      <ul className="grid grid-cols-5 items-center gap-8 sm:mt-10">
+      <div>In {city.name} it's currently {city.main.temp}</div>
+      <ul className="grid grid-cols-2  lg:grid-cols-5 items-center gap-8 sm:mt-10">
         {Object.keys(filteredTemps).map((date) => (
           <li key={date} className="text-indigo-400 h-full">
-            <div className="rounded-xl bg-white shadow-md md:max-w-2xl p-8 h-full">
-              {date}: low {filteredTemps[date].minTemp}ºC and high {filteredTemps[date].maxTemp}ºC
+            <div className="rounded-xl bg-white shadow-md md:max-w-2xl px-4 py-8 h-full">
+              {date}: low {filteredTemps[date].minTemp}ºC & high {filteredTemps[date].maxTemp}ºC
             </div>
           </li>
         ))}
