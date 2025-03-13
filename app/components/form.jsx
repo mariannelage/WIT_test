@@ -1,19 +1,28 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, TextInput } from './styledForm';
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-export default function CityForm({onFormSubmit}) {
+export default function CityForm({onCityChange}) {
+  const validationSchema = Yup.object({
+    cityInput: Yup.string()
+      .required('City is required')
+  });
+
+  const [cityName, setCityName] = useState({ cityInput: '' });
+
 
   return (
 
     <Formik
-        initialValues={{ cityInput: ''}}
+        initialValues={{ cityName}}
         onSubmit={(values) => {
-          onFormSubmit(values.cityInput);
+          setCityName(values);
+          onCityChange(values.cityInput);
         }}
+        validationSchema={validationSchema}
         >
           <Form>
             <TextInput name="cityInput" />

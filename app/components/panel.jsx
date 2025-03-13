@@ -8,7 +8,6 @@ export default function Panel({ cityInput }) {
   const [filteredTemps, setFilteredTemps] = useState({});
 
   useEffect(() => {
-    const cityInput = "Porto";
     const fetchData = async () => {
       // Fetch city data
       const dataCity = await fetch(
@@ -41,6 +40,7 @@ export default function Panel({ cityInput }) {
     dataDays.forEach((data) => {
       const date = data.dt_txt.split(' ')[0]; 
       const temp = data.main.temp;
+      console.log("date "+date+" temp "+temp)
 
       if (!result[date]) {
         result[date] = { maxTemp: temp, minTemp: temp };
@@ -63,10 +63,12 @@ export default function Panel({ cityInput }) {
   return (
     <div className="grid items-center justify-items-center">
       <div>In {city.name}, it is currently {city.main.temp}ºC</div>
-      <ul className="grid grid-columns-5 items-center gap-8 sm:pt-20">
+      <ul className="grid grid-cols-5 items-center gap-8 sm:mt-10">
         {Object.keys(filteredTemps).map((date) => (
-          <li key={date} className=" text-indigo-400">
-            {date}: low {filteredTemps[date].minTemp}ºC and high {filteredTemps[date].maxTemp}ºC
+          <li key={date} className="text-indigo-400 h-full">
+            <div className="rounded-xl bg-white shadow-md md:max-w-2xl p-8 h-full">
+              {date}: low {filteredTemps[date].minTemp}ºC and high {filteredTemps[date].maxTemp}ºC
+            </div>
           </li>
         ))}
       </ul>
