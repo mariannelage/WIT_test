@@ -24,7 +24,7 @@ export default function CityForm({onCityChange}) {
         }}
         validationSchema={validationSchema}
         >
-          <Form>
+          <Form className="py-8">
             <TextInput name="cityInput" />
             <Button type="submit">Go</Button>
             <ErrorMessage name="cityInput" component="div" />

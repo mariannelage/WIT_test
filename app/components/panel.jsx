@@ -70,12 +70,12 @@ export default function Panel({ cityInput }) {
 
   return (
     <div className="grid items-center justify-items-center">
-      <div className="py-16">In {city.name} it's currently {city.main.temp}ºC</div>
+      <div className="py-8">In {city.name} it's currently {city.main.temp}ºC</div>
       <ul className="grid grid-cols-2 lg:grid-cols-5 items-center gap-8 sm:mt-10">
         {Object.keys(filteredTemps).map((date) => (
           <li key={date} className="text-gray-600 h-full">
             <div className="rounded-xl bg-white shadow-md md:max-w-2xl px-4 py-8 h-full">
-              <p className="font-bold text-sky-800">{date}</p> {filteredTemps[date].minTemp}ºC - {filteredTemps[date].maxTemp}ºC
+              <p className="font-semibold text-sky-800">{date}</p> {filteredTemps[date].minTemp}ºC - {filteredTemps[date].maxTemp}ºC
             </div>
           </li>
         ))}
