@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Button, TextInput } from './styledForm';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 export default function CityForm({onCityChange}) {
@@ -26,8 +26,8 @@ export default function CityForm({onCityChange}) {
         >
           <Form>
             <TextInput name="cityInput" />
-            <ErrorMessage name="cityInput" component="div" />
             <Button type="submit">Go</Button>
+            <ErrorMessage name="cityInput" component="div" />
           </Form>
     </Formik>
 
