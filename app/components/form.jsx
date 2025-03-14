@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 export default function CityForm({onCityChange}) {
   const validationSchema = Yup.object({
     cityInput: Yup.string()
-      .required('City is required')
+      .required('City is required to get forecast')
   });
 
   const [cityName, setCityName] = useState({ cityInput: '' });
@@ -27,7 +27,7 @@ export default function CityForm({onCityChange}) {
           <Form className="py-8">
             <TextInput name="cityInput" />
             <Button type="submit">Go</Button>
-            <ErrorMessage name="cityInput" component="div" />
+            <ErrorMessage name="cityInput" component="div" className="text-red-400 pt-2" />
           </Form>
     </Formik>
 

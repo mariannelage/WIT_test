@@ -20,7 +20,7 @@ export default function Panel({ cityInput }) {
           `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&units=metric&appid=bfe5a149c540c0c24b78852de06e5f62`
         );
 
-        if (!cityResponse.ok) throw new Error("There was an error getting the city data, check if it is correctly written");
+        if (!cityResponse.ok) throw new Error("There was an error getting the city data, refresh then check if it is correctly written");
 
         const cityData = await cityResponse.json();
         setCity(cityData);
